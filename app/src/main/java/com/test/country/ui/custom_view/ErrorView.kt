@@ -1,4 +1,4 @@
-package com.test.country.presentation.custom_view
+package com.test.country.ui.custom_view
 
 import android.content.Context
 import android.util.AttributeSet

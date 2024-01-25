@@ -15,7 +15,7 @@
         android:theme="@style/Theme.CountryDemo"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.country_list.CountryListActivity"
+            android:name=".ui.country_list.CountryListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

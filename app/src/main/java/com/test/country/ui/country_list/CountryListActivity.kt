@@ -1,4 +1,4 @@
-package com.test.country.presentation.country_list
+package com.test.country.ui.country_list
 
 import android.os.Bundle
 import androidx.activity.viewModels

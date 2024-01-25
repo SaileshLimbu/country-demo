@@ -1,4 +1,4 @@
-package com.test.country.presentation.country_list
+package com.test.country.ui.country_list
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

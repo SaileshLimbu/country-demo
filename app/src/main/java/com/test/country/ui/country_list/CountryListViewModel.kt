@@ -1,4 +1,4 @@
-package com.test.country.presentation.country_list
+package com.test.country.ui.country_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
