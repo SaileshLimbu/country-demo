@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Country Demo</string>
+    <string name="dummy_name_region">United States of America, NA</string>
+    <string name="dummy_code">US</string>
+    <string name="dummy_capital">Washington DC</string>
+    <string name="button_retry">Retry</string>
+</resources>
