@@ -5,16 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.test.country.common.NetworkResult
-import com.test.country.data.network.SetRequest
-import com.test.country.data.repository.CountryListRepositoryImpl
 import com.test.country.domain.model.Country
 import com.test.country.domain.use_case.GetCountryUserCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CountryListViewModel : ViewModel() {
-
-    private val getCountryListUseCase =
-        GetCountryUserCase(CountryListRepositoryImpl(SetRequest.getApiService()))
+@HiltViewModel
+class CountryListViewModel @Inject constructor(
+    private val getCountryUserCase: GetCountryUserCase
+) : ViewModel() {
 
     private val _countries = MutableLiveData<NetworkResult<List<Country>>>()
     val countries: LiveData<NetworkResult<List<Country>>> get() = _countries
@@ -22,7 +22,7 @@ class CountryListViewModel : ViewModel() {
     fun loadCountries() {
         viewModelScope.launch {
             _countries.value = NetworkResult.Loading()
-            _countries.value = getCountryListUseCase()
+            _countries.value = getCountryUserCase()
         }
     }
 }

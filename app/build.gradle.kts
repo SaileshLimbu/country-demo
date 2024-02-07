@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -33,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -47,6 +49,11 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleScopeVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleScopeVersion")
 
+    val daggerVersion = "2.46.1"
+    implementation("com.google.dagger:hilt-android:$daggerVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$daggerVersion")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -56,4 +63,11 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+
+    testImplementation("org.mockito:mockito-core:4.4.0")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1")
+    testImplementation("org.mockito:mockito-inline:3.7.0")
+
 }

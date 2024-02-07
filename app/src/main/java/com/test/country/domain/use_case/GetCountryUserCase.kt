@@ -6,8 +6,9 @@ import com.test.country.domain.repository.CountryListRepository
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
+import javax.inject.Inject
 
-class GetCountryUserCase(
+class GetCountryUserCase @Inject constructor(
     private val repo: CountryListRepository
 ) {
     suspend operator fun invoke(): NetworkResult<List<Country>> {

@@ -4,12 +4,15 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.test.country.R
 import com.test.country.common.NetworkResult
 import com.test.country.common.hide
 import com.test.country.common.show
 import com.test.country.databinding.ActivityCountryListBinding
 import com.test.country.domain.model.Country
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CountryListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryListBinding
@@ -20,10 +23,12 @@ class CountryListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCountryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.tvTitle.text = getString(R.string.title_country_list)
 
         setupRecyclerView()
         observeCountries()
 
+        binding.refresh.setOnRefreshListener { viewModel.loadCountries() }
         viewModel.loadCountries()
     }
 
@@ -43,21 +48,23 @@ class CountryListActivity : AppCompatActivity() {
     }
 
     private fun showCountryList(countryList: List<Country>?) {
-        binding.progressBar.hide()
+        binding.recyclerView.show()
+        binding.refresh.isRefreshing = false
         adapter.submitList(countryList)
     }
 
     private fun showLoadingProgress() {
         with(binding) {
-            progressBar.show()
             errorView.hide()
+            refresh.isRefreshing = true
         }
     }
 
     private fun showErrorMessage(errorMessage: String) {
         with(binding) {
-            progressBar.hide()
             errorView.show()
+            recyclerView.hide()
+            refresh.isRefreshing = false
             errorView.setErrorMessage(errorMessage)
             errorView.setOnRetryListener { viewModel.loadCountries() }
         }

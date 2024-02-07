@@ -4,4 +4,5 @@
     <string name="dummy_code">US</string>
     <string name="dummy_capital">Washington DC</string>
     <string name="button_retry">Retry</string>
+    <string name="title_country_list">Country List</string>
 </resources>
